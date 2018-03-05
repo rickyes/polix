@@ -3,6 +3,7 @@ node_modules
 *.log
 *.log.*
 dist
+.tern-project
 examples/*/yarn.lock
 examples/*/package-lock.json
 dist
