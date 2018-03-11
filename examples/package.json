@@ -1,9 +1,0 @@
-{
-  "name": "polix-examples",
-  "version": "0.0.1",
-  "description": "polix-examples",
-  "main": "index.js",
-  "repository": "https://github.com/zhoumingque/polix.git",
-  "author": "zhoumq",
-  "license": "MIT"
-}
