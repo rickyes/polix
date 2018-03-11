@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "description": "Node.js Web Framework",
   "main": "index.js",
-  "scripts": {
-    
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhoumingque/polix.git"
@@ -21,6 +19,8 @@
   },
   "homepage": "https://github.com/zhoumingque/polix#readme",
   "dependencies": {
+    "config-lite": "^2.1.0",
+    "grpc": "^1.9.1",
     "lockx": "^0.0.4"
   }
 }
