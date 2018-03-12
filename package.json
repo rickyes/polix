@@ -21,6 +21,6 @@
   "dependencies": {
     "config-lite": "^2.1.0",
     "grpc": "^1.9.1",
-    "lockx": "^0.0.4"
+    "lockx": "0.0.4"
   }
 }
