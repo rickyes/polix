@@ -20,6 +20,7 @@
   "homepage": "https://github.com/zhoumingque/polix#readme",
   "dependencies": {
     "grpc": "^1.9.1",
+    "rxjs": "^5.5.7",
     "should": "^13.2.1"
   }
 }
