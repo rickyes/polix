@@ -5,3 +5,4 @@ node_modules
 .tern-project
 examples/*/yarn.lock
 examples/*/package-lock.json
+package-lock.json

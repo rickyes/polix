@@ -19,8 +19,14 @@
   },
   "homepage": "https://github.com/zhoumingque/polix#readme",
   "dependencies": {
+    "chalk": "^2.3.2",
     "grpc": "^1.9.1",
+    "moment": "^2.22.1",
     "rxjs": "^5.5.7",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.1.0",
     "should": "^13.2.1"
   }
 }
