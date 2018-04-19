@@ -1,7 +1,7 @@
  const moment = require('moment');
 
  /**
- * 生成判断对象类型的高阶函数
+ * 判断对象类型
  * eg:
  * let isPass = isType('String','hello'); // true
  * isPass = isType('Number',1); // true
