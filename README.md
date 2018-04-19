@@ -11,7 +11,9 @@ Node.js Web Framework
 
 [![NPM](https://nodei.co/npm/polix.png?compact=true)](https://nodei.co/npm/polix/)
 
-> `npm install polix --save`
+```bash
+$ npm install polix --save
+```
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fzhoumingque%2Fpolix.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fzhoumingque%2Fpolix?ref=badge_large)
