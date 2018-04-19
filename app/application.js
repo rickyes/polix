@@ -1,4 +1,6 @@
 const enumType = require('./lib/enum').polix;
+const ctx = require('./extends/application');
+const log = require('./lib/log');
 
 class App {
 
@@ -8,6 +10,9 @@ class App {
     this.service = {};
     this.controller = {};
     this._store = {};
+    this.ctx = new ctx();
+    this.ctx.listen(4000);
+    log.listen('',log.color.yellow('start port for'), log.color.red('4000'));
   }
 
   addService(key,service){

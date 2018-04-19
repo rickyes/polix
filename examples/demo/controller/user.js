@@ -1,11 +1,12 @@
-const Polix = require('../../../app/');
-const Controller = Polix.Controller;
+const { Controller,Get } = require('../../../app/');
 
 class UserController extends Controller {
   constructor(){
     super();
-    this.app.service.user.addUser(1,'zhoumq');
-    console.log(this.app.service.user.getUser(1));
+  }
+
+  getUser(req,res){
+
   }
 }
 

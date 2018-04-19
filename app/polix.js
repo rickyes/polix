@@ -1,9 +1,10 @@
 const app = require('./application');
 const Controller = require('./core/controllers');
 const Service = require('./core/services');
-const log = require('./lib/log')({ debug: false });
+const log = require('./lib/log');
 const pkg = require('../package.json');
 const load = require('./load');
+const { Get } = require('./core/decorator');
 
 function start(){
   load.load();
@@ -14,5 +15,6 @@ module.exports = {
   Controller,
   Service,
   app,
+  Get,
   start
 }

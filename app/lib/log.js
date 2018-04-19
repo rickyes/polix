@@ -4,6 +4,7 @@ const util = require('util');
 const tool = require('../utils/tool');
 
 const levelNames = tool.buildEnum({
+  0: 'LISTEN',
   10: 'TRACE',
   20: 'DEBUG',
   30: 'INFO ',
@@ -13,6 +14,7 @@ const levelNames = tool.buildEnum({
 });
 
 const levelColors = tool.buildEnum({
+  0: 'blueBright',
   10: 'gray',
   20: 'gray',
   30: 'green',
@@ -55,7 +57,7 @@ ConsoleStream.prototype._write = function (data) {
 function init(opts){
   let logger = new ConsoleStream(opts);
   let log = {
-    debug: buildLevel(20,logger),
+    listen: buildLevel(0,logger),
     debug: buildLevel(20,logger),
     info: buildLevel(30,logger),
     warn: buildLevel(40,logger),
@@ -73,7 +75,8 @@ function init(opts){
 
   log.color = {
     green: buildChalk('green'),
-    yellow: buildChalk('yellow')
+    yellow: buildChalk('yellow'),
+    red: buildChalk('red'),
   };
 
   return log;
@@ -84,7 +87,11 @@ function buildLevel(level, logger){
     let data = {};
     data.level = level;
     data.msg = msg;
-    log ? (data.log = log) : 0;
+    const args = [].slice.apply(arguments).splice(1);
+    if(args.length > 0){
+      data.log = '';
+      args.map(item => data.log += item + ' ');
+    }
     return logger._write(data);
   };
 };
@@ -95,4 +102,6 @@ function buildChalk(color){
   };
 };
 
-module.exports = init;
+let log = init({ debug: false });
+
+module.exports = log;

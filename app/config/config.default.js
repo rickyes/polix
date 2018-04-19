@@ -1,3 +1,4 @@
 module.exports = {
-  root: __dirname
+  root: __dirname,
+  port: 4000
 };
