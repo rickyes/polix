@@ -11,7 +11,7 @@
  * @param {类型字符串} type
  */
 exports.isType = function (type, obj) {
-  return Object.prototype.toString.call(obj) == `[object ${type}]`
+  return Object.prototype.toString.call(obj) === `[object ${type}]`
 };
 
 /**
@@ -75,3 +75,14 @@ exports.buildEnum = function(obj) {
 exports.format = function(dateStr,type){
   return moment(Date.parse(dateStr)).format(type || 'YYYY-MM-DD HH:mm:ss');
 };
+
+/**
+ * 首字母大写
+ * @param {字符串} str
+ */
+exports.firstUpperCase = function(str){
+  if(!exports.isType(exports.TYPE.String,str)) throw new TypeError(`${str} is not string`);
+  return str.replace(/^\S/,function(s){
+    return s.toUpperCase();
+  });
+}
