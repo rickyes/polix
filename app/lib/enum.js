@@ -1,7 +1,7 @@
-const tool = require('../utils/tool');
+const { Tool } = require('../utils/');
 
 module.exports = {
-  polix: tool.buildEnum({
+  polix: Tool.buildEnum({
     SERVICE: 'service',
     CONTROLLER: 'controller'
   }),

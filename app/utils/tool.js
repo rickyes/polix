@@ -1,4 +1,29 @@
- const moment = require('moment');
+const moment = require('moment');
+const _ = require('./lodash');
+
+ /**
+ * 判断对象是否为初始值
+ * @param  {[type]} obj 对象
+ * @return {[type]}     是否为初始值
+ */
+exports.isEmpty = function () {
+  let item = void (0);
+  for (let obj of arguments) {
+    if (obj !== null && typeof obj === 'object') {
+      item = Object.getOwnPropertyNames(obj);
+      for (let o of item) {
+        if (o === null || o === '' || o === undefined) {
+          return true;
+        }
+      }
+    } else {
+      if (obj === null || obj === '' || obj === undefined) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
 
  /**
  * 判断对象类型
@@ -85,4 +110,29 @@ exports.firstUpperCase = function(str){
   return str.replace(/^\S/,function(s){
     return s.toUpperCase();
   });
-}
+};
+
+/**
+ * 将 callback 转换成 promise
+ * 约定: callback 模式下 回调参数只能有2个参数 第一个为err 第二个为实际对象
+ * sum: 求和函数
+ * sum(1, 2, 3, function(err, data){ console.log(data) }) => 6
+ * promisify(sum, 1, 2, 3).then(function(data){ console.log(data) }) => 6
+ * @return {Promise}
+ */
+exports.promisify = function () {
+  const fn = arguments[0];
+  const args = _.toArray(arguments).slice(1);
+  return new Promise((resolve, reject) => {
+    function callback(err, data) {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(data);
+    }
+
+    args.push(callback);
+
+    fn.apply(null, args);
+  });
+};

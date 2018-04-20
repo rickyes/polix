@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const conf = require('./config/config.default');
 const app = require('./application');
-const tool = require('./utils/tool');
+const { Tool } = require('./utils/');
 
-const TYPE = tool.buildEnum({
+const TYPE = Tool.buildEnum({
   'controller': 'controller',
   'service': 'service',
 });
@@ -12,11 +12,12 @@ const TYPE = tool.buildEnum({
 /**
  * 加载service 和 controller
  */
-exports.loadBase = function(type,filePath){
-  filePath = filePath || path.join(conf.root,`../../examples/demo/${type}`);
+exports.loadBase = function(type){
+  let filePath = path.dirname(require.main.filename);
+  filePath = path.join(filePath,type);
   let files = fs.readdirSync(filePath);
   files.map(file => {
-    app[`add${tool.firstUpperCase(type)}`](file.substring(0,file.length - 3),require(path.join(filePath,file)));
+    app[`add${Tool.firstUpperCase(type)}`](file.substring(0,file.length - 3),require(path.join(filePath,file)));
   });
 };
 

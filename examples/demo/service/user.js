@@ -1,5 +1,4 @@
-const Polix = require('../../../app/');
-const Service = Polix.Service;
+const { Service } = require('../../../app/');
 
 class UserService extends Service {
   constructor(){

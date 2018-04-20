@@ -1,18 +1,22 @@
 const enumType = require('./lib/enum').polix;
 const ctx = require('./extends/application');
 const log = require('./lib/log');
+const { conf } = require('./utils/');
+const path = require('path');
 
 class App {
 
   constructor(){
+    conf.setRoot(path.dirname(require.main.filename));
     this._service = {};
     this._controller = {};
     this.service = {};
     this.controller = {};
     this._store = {};
     this.ctx = new ctx();
-    this.ctx.listen(4000);
-    log.listen('',log.color.yellow('start port for'), log.color.red('4000'));
+    let port = conf.config.base.port;
+    this.ctx.listen(port);
+    log.listen(log.color.yellow('start server'),log.color.green('|'), log.color.red(`${port}`));
   }
 
   addService(key,service){

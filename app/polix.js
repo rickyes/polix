@@ -6,9 +6,9 @@ const pkg = require('../package.json');
 const load = require('./load');
 const { Get } = require('./core/decorator');
 
-function start(){
+function start() {
   load.load();
-  log.info(`start Polix `,log.color.yellow(`v${pkg.version}`));
+  log.info(`start Polix `, log.color.yellow(`v${pkg.version}`));
 };
 
 module.exports = {
