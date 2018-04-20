@@ -1,4 +1,4 @@
-const { Controller,Get } = require('../../../app/');
+const { Controller,Get } = require('polix');
 
 class UserController extends Controller {
 
