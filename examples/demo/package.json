@@ -16,6 +16,6 @@
     "gulp-eslint": "^4.0.2"
   },
   "dependencies": {
-    "polix": "0.0.4"
+    "polix": "0.0.5"
   }
 }
