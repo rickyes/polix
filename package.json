@@ -1,6 +1,6 @@
 {
   "name": "polix",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Node.js Web Framework",
   "main": "app/index.js",
   "scripts": {
