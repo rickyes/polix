@@ -1,22 +1,49 @@
 const enumType = require('./lib/enum').polix;
 const ctx = require('./extends/application');
 const log = require('./lib/log');
-const { conf } = require('./utils/');
+const { conf,Tool } = require('./utils/');
 const path = require('path');
+const { bodyParse } = require('./middleware');
 
 class App {
 
   constructor(){
     conf.setRoot(path.dirname(require.main.filename));
-    this._service = {};
-    this._controller = {};
+    Object.defineProperties(this,{
+      _service: {
+        writable: true,
+        configurable: true,
+        enumerable:false,
+        value: {}
+      },
+      _controller: {
+        writable: true,
+        configurable: true,
+        enumerable:false,
+        value: {}
+      },
+      _store: {
+        writable: true,
+        configurable: true,
+        enumerable:false,
+        value: {}
+      }
+    });
     this.service = {};
     this.controller = {};
-    this._store = {};
     this.ctx = new ctx();
+    this.ctx.use(bodyParse());
     let port = conf.config.base.port;
+    this.config = conf.config;
     this.ctx.listen(port);
     log.listen(log.color.yellow('start server'),log.color.green('|'), log.color.red(`${port}`));
+  }
+
+  addMiddwares(middware){
+    if(!Tool.isType(Tool.TYPE.Object,middware)) throw new TypeError('middware is not object');
+    Object.getOwnPropertyNames(middware).map(m => {
+      this.ctx.use(plugin[m]());
+    });
   }
 
   addService(key,service){

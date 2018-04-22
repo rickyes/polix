@@ -16,6 +16,9 @@
     "gulp-eslint": "^4.0.2"
   },
   "dependencies": {
-    "polix": "0.0.5"
+    "koa-body": "^2.5.0",
+    "koa2-cors": "^2.0.5",
+    "polix": "0.0.5",
+    "uninstall": "0.0.0"
   }
 }

@@ -1,4 +1,4 @@
-const { Service } = require('polix');
+const { Service } = require('../../../app');
 
 class UserService extends Service {
   constructor(){

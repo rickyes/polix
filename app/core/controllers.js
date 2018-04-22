@@ -1,9 +1,9 @@
 const app = require('../application');
 
-class Service {
+class Controller {
   constructor(){
     this.app = app;
   }
 }
 
-module.exports = Service;
+module.exports = Controller;

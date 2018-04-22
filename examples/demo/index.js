@@ -1,3 +1,3 @@
-const Polix = require('polix');
+const Polix = require('../../app');
 
 Polix.start();
