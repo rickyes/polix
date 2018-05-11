@@ -42,7 +42,7 @@ class App {
   addMiddwares(middware){
     if(!Tool.isType(Tool.TYPE.Object,middware)) throw new TypeError('middware is not object');
     Object.getOwnPropertyNames(middware).map(m => {
-      this.ctx.use(plugin[m]());
+      this.ctx.use(middware[m]());
     });
   }
 
