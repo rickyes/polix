@@ -5,7 +5,6 @@ Node.js Web Framework
 [![Build Status](https://travis-ci.org/zhoumingque/polix.svg?branch=master)](https://travis-ci.org/zhoumingque/polix)
 [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/polix)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://www.npmjs.com/package/polix)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fzhoumingque%2Fpolix.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fzhoumingque%2Fpolix?ref=badge_shield)
 
 `polix`是基于`koa v2.5.0`的`IOC`框架,和平常的`Node.js Web Framework`相比，它无需另外绑定路由集合，开发简单，依照`java`的著名依赖注入框架`spring`来制作，让开发者专注于逻辑。`polix`采用多服务多进程架构来保证服务的稳定和快速响应能力，每个`controller`都是一个独立的服务，各服务之间采用`RPC`来通信，这一点借鉴了`pomelo`的架构，不同的是，`polix`采用的是`google`的`gRPC`实现服务通信。`polix`的中间件和`koa v2.x`的中间件保持兼容。`polix`提供`Dockerfile`+`docker-compose.yml`方案进行部署，默认使用的`ORM`是`sequelize`(后续会提供`polix-orm`)。开发者可以选择ES6/7/8 或者 TypeScript来进行开发。
 
@@ -23,7 +22,7 @@ $ npm i polix --save
 ### Controller
 > 在`controller`文件夹下添加`user.js`
 ```javascript
-const { Controller,Get,Post } = require('polix');
+const { Controller, Get, Post, Del, Put  } = require('../../../app');
 
 class UserController extends Controller {
 
@@ -51,6 +50,20 @@ class UserController extends Controller {
     };
   }
 
+  @Put
+  updateUser(ctx){
+    ctx.body = {
+      status: true
+    }
+  }
+
+  @Del
+  delUser(ctx){
+    ctx.body = {
+      sattus: true
+    };
+  }
+
 }
 
 module.exports = UserController;
@@ -61,6 +74,8 @@ module.exports = UserController;
 
 $ POST /user/addUser
 $ GET  /user/getUser
+$ PUT /user/upadteUser
+$ DEL  /user/delUser
 
 ```
 
