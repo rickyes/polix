@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const should = require('should');
 const utils = require('../app/utils/tool');
 const Loads = require('../app/load');
