@@ -21,13 +21,13 @@ const levelColors = tool.buildEnum({
   40: 'bgYellow',
   50: 'bgRed',
   60: 'bgRed'
-});
+})
 
 function ConsoleStream(env) {
   Writable.call(this, { objectMode: true });
   env = env || { debug: true };
   this.debug = env.debug;
-};
+}
 
 util.inherits(ConsoleStream, Writable);
 
@@ -80,10 +80,10 @@ function init(opts){
   };
 
   return log;
-};
+}
 
 function buildLevel(level, logger){
-  return function(msg,log){
+  return function(msg){
     let data = {};
     data.level = level;
     data.msg = msg;
@@ -94,13 +94,13 @@ function buildLevel(level, logger){
     }
     return logger._write(data);
   };
-};
+}
 
 function buildChalk(color){
   return function(msg){
     return chalk[color](msg);
   };
-};
+}
 
 let log = init({ debug: false });
 

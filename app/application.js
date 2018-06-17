@@ -88,7 +88,7 @@ class App {
     return { service: this._service, controller: this._controller };
   }
 
-};
+}
 
 let applicetion = new App();
 

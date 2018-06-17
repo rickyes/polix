@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const conf = require('./config/config.default');
 const app = require('./application');
 const { Tool } = require('./utils/');
 const { PATH } = require('./lib/enum');
@@ -28,7 +27,9 @@ exports.loadMiddware = function(){
   try {
     fs.accessSync(middwarePath,fs.constants.F_OK);
     isHave = true;
-  } catch (error) {}
+  } catch (error) {
+    //
+  }
   isHave && app.addMiddwares(require(middwarePath));
 };
 

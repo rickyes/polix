@@ -21,7 +21,7 @@ const config = new Proxy({}, {
 });
 
 exports.setRoot = function (filePath) {
-  if (Tool.isEmpty(filePath)) throw new TypeError(` root is null `);
+  if (Tool.isEmpty(filePath)) throw new TypeError(' root is null ');
   Object.defineProperties(config, {
     'root': {
       enumerable: true,
@@ -31,7 +31,7 @@ exports.setRoot = function (filePath) {
     },
     'base': {
       enumerable: true,
-      value: require(path.join(filePath,`/config/config.default`)),
+      value: require(path.join(filePath,'/config/config.default')),
       configurable: false,
       writable: false
     }

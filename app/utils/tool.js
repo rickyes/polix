@@ -1,31 +1,7 @@
 const moment = require('moment');
 const _ = require('./lodash');
 
- /**
- * 判断对象是否为初始值
- * @param  {[type]} obj 对象
- * @return {[type]}     是否为初始值
- */
-exports.isEmpty = function () {
-  let item = void (0);
-  for (let obj of arguments) {
-    if (obj !== null && typeof obj === 'object') {
-      item = Object.getOwnPropertyNames(obj);
-      for (let o of item) {
-        if (o === null || o === '' || o === undefined) {
-          return true;
-        }
-      }
-    } else {
-      if (obj === null || obj === '' || obj === undefined) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
-
- /**
+/**
  * 判断对象类型
  * eg:
  * let isPass = isType('String','hello'); // true
@@ -135,4 +111,20 @@ exports.promisify = function () {
 
     fn.apply(null, args);
   });
+};
+
+/**
+ * 判断对象是否为初始值
+ * @param  {[type]} obj 对象
+ * @return {[type]}     是否为初始值
+ */
+exports.isEmpty = function () {
+  for (let obj of arguments) {
+    if (obj === null || obj === undefined) {
+      return true;
+    } else if (exports.isType(exports.TYPE.String, obj) && obj.trim() === ''){
+      return true;
+    }
+  }
+  return false;
 };

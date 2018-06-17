@@ -1,7 +1,6 @@
 const app = require('../application');
 const Router = require('koa-router');
 const router = new Router();
-const { Tool } = require('../utils/');
 const { HTTP } = require('../lib/enum');
 
 function Get(target, key, descriptor) {

@@ -8,8 +8,8 @@ const { Get, Post } = require('./core/decorator');
 
 function start() {
   load.load();
-  log.info(`start Polix `, log.color.yellow(`v${pkg.version}`));
-};
+  log.info('start Polix ', log.color.yellow(`v${pkg.version}`));
+}
 
 module.exports = {
   Controller,
