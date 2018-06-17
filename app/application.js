@@ -3,7 +3,7 @@ const ctx = require('./extends/application');
 const log = require('./lib/log');
 const { conf,Tool } = require('./utils/');
 const path = require('path');
-const { bodyParse } = require('./middleware');
+const middleware = require('./middleware');
 
 class App {
 
@@ -32,7 +32,7 @@ class App {
     this.service = {};
     this.controller = {};
     this.ctx = new ctx();
-    this.ctx.use(bodyParse());
+    middleware.bind(this.ctx);
     let port = conf.config.base.port;
     this.config = conf.config;
     this.ctx.listen(port);

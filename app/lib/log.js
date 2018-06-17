@@ -10,7 +10,8 @@ const levelNames = tool.buildEnum({
   30: 'INFO ',
   40: 'WARN ',
   50: 'ERROR',
-  60: 'FATAL'
+  60: 'FATAL',
+  70: 'ROUTER'
 });
 
 const levelColors = tool.buildEnum({
@@ -20,7 +21,8 @@ const levelColors = tool.buildEnum({
   30: 'green',
   40: 'bgYellow',
   50: 'bgRed',
-  60: 'bgRed'
+  60: 'bgRed',
+  70: 'magenta'
 })
 
 function ConsoleStream(env) {
@@ -63,7 +65,8 @@ function init(opts){
     warn: buildLevel(40,logger),
     error: buildLevel(50,logger),
     super: buildLevel(10,logger),
-    log: console.log
+    log: console.log,
+    router: buildLevel(70, logger),
   };
 
   log.d = log.debug;
@@ -72,6 +75,7 @@ function init(opts){
   log.e = log.error;
   log.l = log.log;
   log.s = log.super;
+  log.r = log.router;
 
   log.color = {
     green: buildChalk('green'),

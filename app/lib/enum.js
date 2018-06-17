@@ -7,7 +7,10 @@ module.exports = {
   }),
   HTTP: Tool.buildEnum({
     GET: 'get',
-    POST: 'post'
+    POST: 'post',
+    PUT: 'put',
+    DELETE: 'delete',
+    DEL: 'del'
   }),
   PATH: Tool.buildEnum({
     MIDDWARE: 'middware',

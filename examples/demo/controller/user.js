@@ -1,4 +1,4 @@
-const { Controller,Get,Post } = require('../../../app');
+const { Controller, Get, Post, Del, Put  } = require('../../../app');
 
 class UserController extends Controller {
 
@@ -31,6 +31,22 @@ class UserController extends Controller {
       v: 'v1.0'
     }
   }
+
+  @Put
+  updateUser(ctx){
+    ctx.body = {
+      status: true
+    }
+  }
+
+  @Del
+  delUser(ctx){
+    ctx.body = {
+      sattus: true
+    };
+  }
+
+
 }
 
 module.exports = UserController;

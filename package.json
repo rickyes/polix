@@ -54,6 +54,7 @@
     "vary": "^1.0.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "mocha": "^5.1.0",
     "should": "^13.2.1"
   }
