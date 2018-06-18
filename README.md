@@ -18,6 +18,13 @@ Node.js Web Framework
 $ npm i polix --save
 ```
 
+## Getting Started
+```bash
+$ npm i polix-cli -g
+$ pol init example && cd example
+$ make build && make dev
+```
+
 ## Dev
 ### Controller
 > 在`controller`文件夹下添加`user.js`
