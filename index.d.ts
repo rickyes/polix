@@ -3,8 +3,9 @@ declare module 'polix' {
     class Controller{}
     class Service{}
     function start()
-    function Post()
-    function Put()
-    function Del()
+    function GET()
+    function POST()
+    function PUT()
+    function DEL()
   
 }

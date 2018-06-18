@@ -4,7 +4,7 @@ const Service = require('./core/services');
 const log = require('./lib/log');
 const pkg = require('../package.json');
 const load = require('./load');
-const { Get, Post, Put, Del } = require('./core/decorator');
+const { GET, POST, PUT, DEL } = require('./core/decorator');
 
 function start() {
   load.load();
@@ -15,9 +15,9 @@ module.exports = {
   Controller,
   Service,
   app,
-  Get,
-  Post,
-  Put,
-  Del,
+  GET,
+  POST,
+  PUT,
+  DEL,
   start
 }

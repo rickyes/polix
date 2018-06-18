@@ -29,16 +29,16 @@ $ make build && make dev
 ### Controller
 > 在`controller`文件夹下添加`user.js`
 ```javascript
-const { Controller, Get, Post, Del, Put  } = require('../../../app');
+const { Controller, GET, POST, DEL, PUT  } = require('polix');
 
 class UserController extends Controller {
 
   constructor(){
     super();
   }
-
-
-  @Post
+  
+  // POST /user/addUser
+  @POST
   addUser(ctx){
     let req = ctx.request;
     let msg = req.body;
@@ -48,7 +48,8 @@ class UserController extends Controller {
     };
   }
 
-  @Get
+  // GET /user/getUser
+  @GET
   getUser(ctx){
     let req = ctx.request;
     let msg = req.query;
@@ -57,33 +58,42 @@ class UserController extends Controller {
     };
   }
 
-  @Put
+  // GET /user/info
+  @GET('info')
+  getInfo(ctx){
+    ctx.body = {
+      v: 'v1.0'
+    }
+  }
+
+  // PUT /user/updateUser
+  @PUT
   updateUser(ctx){
     ctx.body = {
       status: true
     }
   }
 
-  @Del
+  // DEL /user/delUser
+  @DEL
   delUser(ctx){
     ctx.body = {
-      sattus: true
+      status: true
+    };
+  }
+
+  // GET /user/status/:userId
+  @GET('status/:userId')
+  getStatus(ctx){
+    ctx.body = {
+      status: true,
+      userId: ctx.params.userId
     };
   }
 
 }
 
 module.exports = UserController;
-```
-
-上面代码的接口路由为：
-```bash
-
-$ POST /user/addUser
-$ GET  /user/getUser
-$ PUT /user/upadteUser
-$ DEL  /user/delUser
-
 ```
 
 ### middware
@@ -122,7 +132,7 @@ module.exports = {
 ## Start
 
 ```bash
-$ npm run dev
+$ make build && make dev
 ```
 
 ## Author
