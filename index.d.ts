@@ -1,8 +1,10 @@
-declare class polix {
+declare module 'polix' {
+  
+    class Controller{}
+    class Service{}
+    function start()
+    function Post()
+    function Put()
+    function Del()
+  
 }
-
-export class Controller {}
-
-export class Service {}
-
-export as namespace Polix;
