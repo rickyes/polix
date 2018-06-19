@@ -25,6 +25,31 @@ $ pol init example && cd example
 $ make build && make dev
 ```
 
+## Service
+> 在`service`文件夹下添加`user.js`
+
+```javascript
+const { Service } = require('polix');
+
+class UserService extends Service {
+  constructor(){
+    super();
+    this._name = {};
+  }
+
+  addUser(userId,name){
+    this._name[userId] = name;
+    return this;
+  }
+
+  getUser(userId){
+    return this._name[userId];
+  }
+}
+
+module.exports = UserService;
+```
+
 ## Controller
 > 在`controller`文件夹下添加`user.js`
 
