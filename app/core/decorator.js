@@ -27,7 +27,13 @@ function bind(target, key, descriptor, type){
   base = base.split('controller')[0];
   const ctx = app.ctx;
   const method = descriptor.value;
-  router[type](`/${base}/${key}`, method.bind(app));
+  descriptor.value = (...args) => {
+    let reqCtx = args[0];
+    let reqBody = Object.assign({}, reqCtx.params, reqCtx.request.query, reqCtx.request.body);
+    args.unshift(reqBody);
+    return method.apply(app, args);
+  };
+  router[type](`/${base}/${key}`, descriptor.value);
   ctx.use(router.routes()).use(router.allowedMethods());
   return descriptor;
 }

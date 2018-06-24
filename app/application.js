@@ -32,6 +32,7 @@ class App {
     this.service = {};
     this.controller = {};
     this.ctx = new ctx();
+    this.app = {};
     middleware.bind(this.ctx);
     let port = conf.config.base.port;
     this.config = conf.config;

@@ -38,12 +38,12 @@ class UserService extends Service {
     this._name = {};
   }
 
-  addUser(userId,name){
+  async addUser(userId,name){
     this._name[userId] = name;
     return this;
   }
 
-  getUser(userId){
+  async getUser(userId){
     return this._name[userId];
   }
 }
@@ -58,17 +58,11 @@ module.exports = UserService;
 const { Controller, GET, POST, DEL, PUT  } = require('polix');
 
 class UserController extends Controller {
-
-  constructor(){
-    super();
-  }
   
   // POST /user/addUser
   @POST
-  addUser(ctx){
-    let req = ctx.request;
-    let msg = req.body;
-    this.service.user.addUser(msg.userId,msg.name);
+  async addUser(param, ctx){
+    await this.service.user.addUser(param.userId,param.name);
     ctx.body = {
       result: 'ok'
     };
@@ -76,17 +70,16 @@ class UserController extends Controller {
 
   // GET /user/getUser
   @GET
-  getUser(ctx){
-    let req = ctx.request;
-    let msg = req.query;
+  async getUser(param, ctx){
+    let user = await this.service.user.getUser(param.userId);
     ctx.body = {
-      user: this.service.user.getUser(msg.userId)
+      user
     };
   }
 
   // GET /user/info
   @GET('info')
-  getInfo(ctx){
+  async getInfo(param, ctx){
     ctx.body = {
       v: 'v1.0'
     }
@@ -94,7 +87,7 @@ class UserController extends Controller {
 
   // PUT /user/updateUser
   @PUT
-  updateUser(ctx){
+  async updateUser(param, ctx){
     ctx.body = {
       status: true
     }
@@ -102,7 +95,7 @@ class UserController extends Controller {
 
   // DEL /user/delUser
   @DEL
-  delUser(ctx){
+  async delUser(param, ctx){
     ctx.body = {
       status: true
     };
@@ -110,10 +103,10 @@ class UserController extends Controller {
 
   // GET /user/status/:userId
   @GET('status/:userId')
-  getStatus(ctx){
+  async getStatus(param, ctx){
     ctx.body = {
       status: true,
-      userId: ctx.params.userId
+      userId: param.userId
     };
   }
 
