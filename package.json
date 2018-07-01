@@ -1,6 +1,6 @@
 {
   "name": "polix",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Node.js Web Framework",
   "main": "app/index.js",
   "scripts": {
@@ -47,6 +47,7 @@
     "on-finished": "^2.1.0",
     "only": "0.0.2",
     "parseurl": "^1.3.0",
+    "polix-request": "0.0.1",
     "rxjs": "^5.5.7",
     "statuses": "^1.2.0",
     "type-is": "^1.5.5",
@@ -54,8 +55,6 @@
     "vary": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "^5.1.0",
-    "should": "^13.2.1",
-    "supertest": "^3.1.0"
+    "should": "^13.2.1"
   }
 }

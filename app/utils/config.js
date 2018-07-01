@@ -34,6 +34,21 @@ exports.setRoot = function (filePath) {
       value: require(path.join(filePath,'/config/config.default')),
       configurable: false,
       writable: false
+    },
+    'plugin': {
+      enumerable: false,
+      value: require(path.join(filePath,'/config/plugin.default')),
+      configurable: false,
+      writable: false
+    },
+    'polix': {
+      enumerable: false,
+      value: {
+        plugin: require(path.join(__dirname, '../config/plugin.default')),
+        pluginDir: path.join(__dirname, '../plugin')
+      },
+      configurable: false,
+      writable: false
     }
   });
 };

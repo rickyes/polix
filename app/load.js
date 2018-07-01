@@ -33,9 +33,22 @@ exports.loadMiddware = function(){
   isHave && app.addMiddwares(require(middwarePath));
 };
 
+exports.loadPlugin = function(){
+  let pluginPath = path.join(app.config.root,PATH.PLUGIN);
+  let isHave = false;
+  try {
+    fs.accessSync(pluginPath,fs.constants.F_OK);
+    isHave = true;
+  } catch (error) {
+    //
+  }
+  isHave && app.addPlugins(pluginPath);
+};
+
 
 exports.load = function(){
   exports.loadMiddware();
   exports.loadBase(TYPE.controller);
   exports.loadBase(TYPE.service);
+  exports.loadPlugin();
 };

@@ -11,20 +11,20 @@ class App {
     conf.setRoot(path.dirname(require.main.filename));
     Object.defineProperties(this,{
       _service: {
-        writable: true,
-        configurable: true,
+        writable: false,
+        configurable: false,
         enumerable:false,
         value: {}
       },
       _controller: {
-        writable: true,
-        configurable: true,
+        writable: false,
+        configurable: false,
         enumerable:false,
         value: {}
       },
       _store: {
-        writable: true,
-        configurable: true,
+        writable: false,
+        configurable: false,
         enumerable:false,
         value: {}
       }
@@ -37,13 +37,50 @@ class App {
     let port = conf.config.base.port;
     this.config = conf.config;
     this.ctx.listen(port);
-    log.listen(log.color.yellow('start server'),log.color.green('|'), log.color.red(`${port}`));
+    this.addPlugins(conf.config.polix.pluginDir, conf.config.polix.plugin);
+    log.listen(log.color.yellow('Start Server'),log.color.green('|'), log.color.red(`http://127.0.0.1:${port}`));
   }
 
   addMiddwares(middware){
     if(!Tool.isType(Tool.TYPE.Object,middware)) throw new TypeError('middware is not object');
     Object.getOwnPropertyNames(middware).map(m => {
       this.ctx.use(middware[m]());
+    });
+  }
+
+  addPlugins(plugin, pluginConf = this.config.plugin){
+    if(!Tool.isType(Tool.TYPE.Object, pluginConf)) throw new TypeError('plugin is not object');
+    Reflect.ownKeys(pluginConf).some(m => {
+      if (!pluginConf[m].enable){
+        return false;
+      }
+      let dir = void (0);
+      try {
+        let p = require(pluginConf[m].package);
+        Reflect.defineProperty(this.app, m, {
+          writable: false,
+          configurable: false,
+          enumerable: true,
+          value: p
+        });
+        try {
+          Reflect.defineProperty(this.app[m], 'load',{
+            writable: false,
+            configurable: false,
+            enumerable: false,
+            value: this.app[m].load
+          });
+          dir = pluginConf[m].package.split('polix-')[1];
+          let conf = require(path.join(plugin, dir));
+          this.app[m].load(conf);
+        } catch (error) {
+          if (error.message !== `Cannot find module '${__dirname}/plugin/${dir}'`){
+            log.error(error);
+          }
+        }
+      } catch (error) {
+        log.error(error);
+      }
     });
   }
 
