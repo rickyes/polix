@@ -1,6 +1,6 @@
 {
   "name": "polix",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "Node.js Web Framework",
   "main": "app/index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   "keywords": [
     "web",
     "framework"
+  ],
+  "files": [
+    "app/",
+    "index.d.ts"
   ],
   "author": "zhoumq",
   "license": "MIT",

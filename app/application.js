@@ -37,7 +37,7 @@ class App {
     let port = conf.config.base.port;
     this.config = conf.config;
     this.ctx.listen(port);
-    this.addPlugins(conf.config.polix.pluginDir, conf.config.polix.plugin);
+    this.addPlugins(conf.config.polix.plugin, conf.config.polix.pluginDir);
     log.listen(log.color.yellow('Start Server'),log.color.green('|'), log.color.red(`http://127.0.0.1:${port}`));
   }
 
@@ -48,7 +48,7 @@ class App {
     });
   }
 
-  addPlugins(plugin, pluginConf = this.config.plugin){
+  addPlugins(pluginConf = this.config.plugin, plugin){
     if(!Tool.isType(Tool.TYPE.Object, pluginConf)) throw new TypeError('plugin is not object');
     Reflect.ownKeys(pluginConf).some(m => {
       if (!pluginConf[m].enable){
@@ -63,6 +63,7 @@ class App {
           enumerable: true,
           value: p
         });
+        if (Tool.isEmpty(plugin)) return false;
         try {
           Reflect.defineProperty(this.app[m], 'load',{
             writable: false,

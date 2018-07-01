@@ -42,7 +42,7 @@ exports.loadPlugin = function(){
   } catch (error) {
     //
   }
-  isHave && app.addPlugins(pluginPath);
+  app.addPlugins(isHave ? pluginPath : void(0));
 };
 
 
