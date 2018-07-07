@@ -156,6 +156,3 @@ $ make build && make dev
 
 ## Author
 Polix © [Ricky 泽阳](https://github.com/zhoumingque), Released under the MIT License.  
-
-Authored and maintained by [Ricky 泽阳](https://github.com/zhoumingque) with help from contributors ([list](https://github.com/zhoumingque/polix/graphs/contributors)).
-> [zhoumq.cn](http://git.zhoumq.cn) · GitHub [@zhoumq](https://github.com/zhoumingque)
